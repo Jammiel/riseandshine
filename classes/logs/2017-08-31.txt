@@ -1,0 +1,23 @@
+Time : 13:01:11
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'p.cashierid' in 'order clause'
+Raw SQL : SELECT * FROM cashier p,vault_tracs v WHERE p.vtracs=v.vtracid  ORDER BY p.cashierid DESC
+
+Time : 12:58:24
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'p.vtracs' in 'where clause'
+Raw SQL : SELECT * FROM cashiercash p,vault_tracs v WHERE p.vtracs=v.vtracid  ORDER BY p.cashid DESC
+
+Time : 12:57:29
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'p.vtracs' in 'where clause'
+Raw SQL : SELECT * FROM cashiercash p,vault_tracs v WHERE p.vtracs=v.vtracid  ORDER BY p.cashid DESC
+
+Time : 12:55:47
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'p.vtracs' in 'where clause'
+Raw SQL : SELECT * FROM cashiercash p,vault_tracs v WHERE p.vtracs=v.vtracid  ORDER BY p.cashid DESC
+
+Time : 12:55:33
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'p.vtracs' in 'where clause'
+Raw SQL : SELECT * FROM cashiercash p,vault_tracs v WHERE p.vtracs=v.vtracid  ORDER BY p.cashid DESC
+
+Time : 12:54:32
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'p.vtracs' in 'where clause'
+Raw SQL : SELECT * FROM cashiercash p,vault_tracs v WHERE p.vtracs=v.vtracid  ORDER BY p.cashid DESC

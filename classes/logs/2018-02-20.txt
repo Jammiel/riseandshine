@@ -1,0 +1,7 @@
+Time : 20:08:06
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'rct' in 'field list'
+Raw SQL : INSERT INTO deposits (clientid,depositor,amount,e_tag,inserteddate,modifieddate,user_handle,depositeditems,depositedamts,balance,sbal,rct) VALUES (:clientid,:depositor,:amount,:e_tag,:inserteddate,:modifieddate,:user_handle,:depositeditems,:depositedamts,:balance,:sbal,:rct)
+
+Time : 00:21:56
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'vct' in 'field list'
+Raw SQL : INSERT INTO withdraws (clientid,amount,amount_inwords,user_handle,re_tag,balance,inserteddate,modifieddate,vct,withdrawor) VALUES (:clientid,:amount,:amount_inwords,:user_handle,:re_tag,:balance,:inserteddate,:modifieddate,:vct,:withdrawor)

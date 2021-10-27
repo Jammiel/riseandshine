@@ -1,0 +1,34 @@
+Time : 14:42:34
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mfi_db.users' doesn't exist
+Raw SQL : SELECT * FROM users WHERE user_id='1'
+
+Time : 14:42:34
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mfi_db.users' doesn't exist
+Raw SQL : SELECT * FROM users WHERE user_id='1'
+
+Time : 14:42:34
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mfi_db.users' doesn't exist
+Raw SQL : SELECT * FROM users WHERE user_id='1'
+
+Time : 14:42:33
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mfi_db.users' doesn't exist
+Raw SQL : SELECT * FROM users WHERE user_id='1'
+
+Time : 14:42:33
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mfi_db.users' doesn't exist
+Raw SQL : SELECT * FROM users WHERE user_id='1'
+
+Time : 14:42:33
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mfi_db.users' doesn't exist
+Raw SQL : SELECT * FROM users WHERE user_id='1'
+
+Time : 14:42:32
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mfi_db.users' doesn't exist
+Raw SQL : SELECT * FROM users WHERE user_id='1'
+
+Time : 14:42:28
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mfi_db.users' doesn't exist
+Raw SQL : SELECT * FROM users WHERE user_id='1'
+
+Time : 14:41:29
+SQLSTATE[HY000] [1049] Unknown database 'mfi_db'

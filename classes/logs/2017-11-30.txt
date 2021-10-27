@@ -1,0 +1,15 @@
+Time : 11:36:14
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'o.date' in 'where clause'
+Raw SQL : SELECT * FROM loanwriteoff s, loan_approvals a WHERE a.desc_id=s.approveid  AND YEAR(o.date) = '' ORDER BY reapayid DESC
+
+Time : 11:36:02
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'o.rdate' in 'where clause'
+Raw SQL : SELECT * FROM loanwriteoff s, loan_approvals a WHERE a.desc_id=s.approveid  AND YEAR(o.rdate) = '' ORDER BY reapayid DESC
+
+Time : 07:06:24
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'mchargeid' in 'where clause'
+Raw SQL : SELECT * FROM loanwriteoff_repay WHERE mchargeid=''
+
+Time : 06:54:10
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '-2500' WHERE offid = '1'' at line 1
+Raw SQL : -2500' WHERE offid = '1'

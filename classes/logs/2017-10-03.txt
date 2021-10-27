@@ -1,0 +1,15 @@
+Time : 10:29:09
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mfi_db.general_settings' doesn't exist
+Raw SQL : SELECT * FROM general_settings
+
+Time : 10:14:24
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mfi_db.general_settings' doesn't exist
+Raw SQL : SELECT * FROM general_settings
+
+Time : 10:10:36
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mfi_db.general_settings' doesn't exist
+Raw SQL : SELECT * FROM general_settings
+
+Time : 10:09:52
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mfi_db.general_settings' doesn't exist
+Raw SQL : SELECT * FROM general_settings

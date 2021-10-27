@@ -1,0 +1,3 @@
+Time : 15:00:39
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mfi_az.groups' doesn't exist
+Raw SQL : INSERT INTO groups (group_name,address,groups) VALUES (:group_name,:address,:groups)

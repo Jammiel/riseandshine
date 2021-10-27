@@ -1,0 +1,11 @@
+Time : 21:43:05
+SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'totalinterest' at row 1
+Raw SQL : INSERT INTO loan_schedules (approveid,disbursed_date,balance,amount_given,period,repay_date,amount_disb,reviewdate,paycheck,principal,interest,total,bal_bef,bal_aft,fines,finestat,loanbal,type,totalprinc,totalinterest) VALUES (:approveid,:disbursed_date,:balance,:amount_given,:period,:repay_date,:amount_disb,:reviewdate,:paycheck,:principal,:interest,:total,:bal_bef,:bal_aft,:fines,:finestat,:loanbal,:type,:totalprinc,:totalinterest)
+
+Time : 21:41:56
+SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'amount_disb' at row 1
+Raw SQL : INSERT INTO loan_schedules (approveid,disbursed_date,balance,amount_given,period,repay_date,amount_disb,reviewdate,paycheck,principal,interest,total,bal_bef,bal_aft,fines,finestat,loanbal,type,totalprinc,totalinterest) VALUES (:approveid,:disbursed_date,:balance,:amount_given,:period,:repay_date,:amount_disb,:reviewdate,:paycheck,:principal,:interest,:total,:bal_bef,:bal_aft,:fines,:finestat,:loanbal,:type,:totalprinc,:totalinterest)
+
+Time : 21:14:21
+SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'amount_disb' at row 1
+Raw SQL : INSERT INTO loan_schedules (approveid,disbursed_date,balance,amount_given,period,repay_date,amount_disb,reviewdate,paycheck,principal,interest,total,bal_bef,bal_aft,fines,finestat,loanbal,type,totalprinc,totalinterest) VALUES (:approveid,:disbursed_date,:balance,:amount_given,:period,:repay_date,:amount_disb,:reviewdate,:paycheck,:principal,:interest,:total,:bal_bef,:bal_aft,:fines,:finestat,:loanbal,:type,:totalprinc,:totalinterest)

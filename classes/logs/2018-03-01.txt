@@ -1,0 +1,7 @@
+Time : 06:04:05
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'insertiondate' at line 1
+Raw SQL : SELECT * FROM mergerwd WHERE clientid='256' ORDER BY mergeid DESC, GROUPBY insertiondate
+
+Time : 06:03:40
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'GROUP BY insertiondate' at line 1
+Raw SQL : SELECT * FROM mergerwd WHERE clientid='256' ORDER BY mergeid DESC, GROUP BY insertiondate

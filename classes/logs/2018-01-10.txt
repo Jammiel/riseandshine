@@ -1,0 +1,2 @@
+Time : 10:22:58
+SQLSTATE[HY000] [1045] Access denied for user 'mfi_db'@'localhost' (using password: YES)

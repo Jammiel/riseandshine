@@ -1,0 +1,7 @@
+Time : 12:16:05
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'noncashtracs' in 'where clause'
+Raw SQL : SELECT * FROM noncashtracs WHERE noncashtracs='3'
+
+Time : 12:15:31
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'charge_id' in 'where clause'
+Raw SQL : SELECT * FROM noncashtracs WHERE charge_id=''

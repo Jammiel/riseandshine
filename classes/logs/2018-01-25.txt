@@ -1,0 +1,11 @@
+Time : 07:42:51
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mfi_db.fees_tb' doesn't exist
+Raw SQL : SELECT SUM(amount_paid) as amtpaid FROM fees_tb WHERE deleted='0' AND YEAR(on_date)='' && MONTH(on_date)=''
+
+Time : 07:35:51
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mfi_db.users' doesn't exist
+Raw SQL : SELECT * FROM users WHERE user_id='1'
+
+Time : 07:21:44
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mfi_db.fees_tb' doesn't exist
+Raw SQL : SELECT SUM(amount_paid) as amtpaid FROM fees_tb WHERE deleted='0' AND YEAR(on_date)='' && MONTH(on_date)=''

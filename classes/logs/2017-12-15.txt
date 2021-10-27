@@ -1,0 +1,7 @@
+Time : 15:55:04
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'desc_id' in 'where clause'
+Raw SQL : SELECT * FROM loan_schedules WHERE MONTH(disbursed_date)='11' AND YEAR(disbursed_date)='2017' AND desc_id='3'
+
+Time : 11:27:16
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'a.disbursed_date' in 'where clause'
+Raw SQL : SELECT SUM(s.amount_disb) as disb FROM loan_schedules s, loan_approvals a WHERE a.desc_id = s.approveid AND MONTH(a.disbursed_date)='1'

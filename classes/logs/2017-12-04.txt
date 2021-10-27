@@ -1,0 +1,15 @@
+Time : 08:15:50
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'loananalysis WHERE year='2017-12-04'' at line 1
+Raw SQL : SELECT * loananalysis WHERE year='2017-12-04'
+
+Time : 08:13:32
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'clients' at line 1
+Raw SQL : SELECT * clients
+
+Time : 08:20:34
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'MONTH(inserted_date)='1' 
+										AND YEAR(inserted_date)='2017'' at line 3
+Raw SQL : SELECT MAX(r.loan_rpid) as id, r.loanbals FROM loan_repayment r, loan_schedules s 
+										WHERE r.sheduleid = s.schudele_id 
+										AND r.sheduleid = '3' MONTH(inserted_date)='1' 
+										AND YEAR(inserted_date)='2017'

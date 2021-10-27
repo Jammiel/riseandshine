@@ -1,0 +1,7 @@
+Time : 11:25:55
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cashier' in 'where clause'
+Raw SQL : UPDATE deposits SET status='1' WHERE cashier='1'
+
+Time : 07:46:15
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'recondate' in 'field list'
+Raw SQL : INSERT INTO cashierincharge (recondate,recontime,cashathand,shortage,overage,expectedamt,openingamt,totdep,totwithd,cashier) VALUES (:recondate,:recontime,:cashathand,:shortage,:overage,:expectedamt,:openingamt,:totdep,:totwithd,:cashier)

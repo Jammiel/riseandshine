@@ -1,0 +1,3 @@
+Time : 10:59:10
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'PRIMARY'
+Raw SQL : INSERT INTO vault_tracs (transamount,operation,direction,vdate,vtime,balance) VALUES (:transamount,:operation,:direction,:vdate,:vtime,:balance)

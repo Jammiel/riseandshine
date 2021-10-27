@@ -1,0 +1,51 @@
+Time : 08:57:46
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mfi_az.groups' doesn't exist
+Raw SQL : INSERT INTO groups (group_name,address,groups) VALUES (:group_name,:address,:groups)
+
+Time : 08:42:47
+SQLSTATE[HY000]: General error: 3065 Expression #1 of ORDER BY clause is not in SELECT list, references column 'mfi_az.s.disbursed_date' which is not in SELECT list; this is incompatible with DISTINCT
+Raw SQL : SELECT DISTINCT(a.member_id) as member_id FROM loan_schedules s, loan_approvals a WHERE a.desc_id=s.approveid  AND YEAR(s.disbursed_date) = '2019' ORDER BY disbursed_date DESC
+
+Time : 08:42:42
+SQLSTATE[HY000]: General error: 3065 Expression #1 of ORDER BY clause is not in SELECT list, references column 'mfi_az.s.disbursed_date' which is not in SELECT list; this is incompatible with DISTINCT
+Raw SQL : SELECT DISTINCT(a.member_id) as member_id FROM loan_schedules s, loan_approvals a WHERE a.desc_id=s.approveid  AND YEAR(s.disbursed_date) = '2019' ORDER BY disbursed_date DESC
+
+Time : 08:40:09
+SQLSTATE[HY000]: General error: 3065 Expression #1 of ORDER BY clause is not in SELECT list, references column 'mfi_az.s.disbursed_date' which is not in SELECT list; this is incompatible with DISTINCT
+Raw SQL : SELECT DISTINCT(a.member_id) as member_id FROM loan_schedules s, loan_approvals a WHERE a.desc_id=s.approveid  AND YEAR(s.disbursed_date) = '2019' ORDER BY s.disbursed_date DESC
+
+Time : 08:34:19
+SQLSTATE[HY000]: General error: 3065 Expression #1 of ORDER BY clause is not in SELECT list, references column 'mfi_az.s.disbursed_date' which is not in SELECT list; this is incompatible with DISTINCT
+Raw SQL : SELECT DISTINCT(a.member_id) as member_id FROM loan_schedules s, loan_approvals a WHERE a.desc_id=s.approveid  AND YEAR(s.disbursed_date) = '2018' ORDER BY s.disbursed_date DESC
+
+Time : 08:32:03
+SQLSTATE[HY000]: General error: 3065 Expression #1 of ORDER BY clause is not in SELECT list, references column 'mfi_az.s.disbursed_date' which is not in SELECT list; this is incompatible with DISTINCT
+Raw SQL : SELECT DISTINCT(a.member_id) as member_id FROM loan_schedules s, loan_approvals a WHERE a.desc_id=s.approveid  AND YEAR(s.disbursed_date) = '2019' ORDER BY s.disbursed_date DESC
+
+Time : 08:31:50
+SQLSTATE[HY000]: General error: 3065 Expression #1 of ORDER BY clause is not in SELECT list, references column 'mfi_az.s.disbursed_date' which is not in SELECT list; this is incompatible with DISTINCT
+Raw SQL : SELECT DISTINCT(a.member_id) as member_id FROM loan_schedules s, loan_approvals a WHERE a.desc_id=s.approveid  AND YEAR(s.disbursed_date) = '2019' ORDER BY s.disbursed_date DESC
+
+Time : 08:31:49
+SQLSTATE[HY000]: General error: 3065 Expression #1 of ORDER BY clause is not in SELECT list, references column 'mfi_az.s.disbursed_date' which is not in SELECT list; this is incompatible with DISTINCT
+Raw SQL : SELECT DISTINCT(a.member_id) as member_id FROM loan_schedules s, loan_approvals a WHERE a.desc_id=s.approveid  AND YEAR(s.disbursed_date) = '2019' ORDER BY s.disbursed_date DESC
+
+Time : 08:31:45
+SQLSTATE[HY000]: General error: 3065 Expression #1 of ORDER BY clause is not in SELECT list, references column 'mfi_az.s.disbursed_date' which is not in SELECT list; this is incompatible with DISTINCT
+Raw SQL : SELECT DISTINCT(a.member_id) as member_id FROM loan_schedules s, loan_approvals a WHERE a.desc_id=s.approveid  AND YEAR(s.disbursed_date) = '2019' ORDER BY s.disbursed_date DESC
+
+Time : 08:29:50
+SQLSTATE[HY000]: General error: 3065 Expression #1 of ORDER BY clause is not in SELECT list, references column 'mfi_az.s.disbursed_date' which is not in SELECT list; this is incompatible with DISTINCT
+Raw SQL : SELECT DISTINCT(a.member_id) as member_id FROM loan_schedules s, loan_approvals a WHERE a.desc_id=s.approveid  AND YEAR(s.disbursed_date) = '2019' ORDER BY s.disbursed_date DESC
+
+Time : 08:29:21
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mfi_az.groups' doesn't exist
+Raw SQL : INSERT INTO groups (group_name,address,groups) VALUES (:group_name,:address,:groups)
+
+Time : 08:21:34
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(insertiondate)='2019' ORDER BY mergeid DESC' at line 1
+Raw SQL : SELECT * FROM mergerwd YEAR(insertiondate)='2019' ORDER BY mergeid DESC
+
+Time : 06:44:58
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(insertiondate)='2019' ORDER BY mergeid DESC' at line 1
+Raw SQL : SELECT * FROM mergerwd YEAR(insertiondate)='2019' ORDER BY mergeid DESC

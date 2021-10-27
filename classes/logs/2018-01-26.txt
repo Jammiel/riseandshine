@@ -1,0 +1,43 @@
+Time : 09:38:48
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mfi_db.budget' doesn't exist
+Raw SQL : SELECT * FROM budget
+
+Time : 09:36:46
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mfi_db.budget' doesn't exist
+Raw SQL : SELECT * FROM budget
+
+Time : 09:36:15
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mfi_db.budget' doesn't exist
+Raw SQL : SELECT * FROM budget
+
+Time : 09:34:36
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'views' in 'where clause'
+Raw SQL : SELECT * FROM level3 WHERE views='1' AND level2code like '2%'
+
+Time : 05:00:32
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'level2id' in 'where clause'
+Raw SQL : SELECT * FROM level4 WHERE level3act='1' AND views='1' AND level2id=''
+
+Time : 04:59:34
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'level2act' in 'where clause'
+Raw SQL : SELECT * FROM level4 WHERE level2act='1' AND views='1' AND level2id=''
+
+Time : 04:58:47
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'level2act' in 'where clause'
+Raw SQL : SELECT * FROM level4 WHERE level2act='1' AND views='1' AND level2id=''
+
+Time : 04:56:54
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'level2act' in 'where clause'
+Raw SQL : SELECT * FROM level4 WHERE level2act='1' AND views='1' AND level2id=''
+
+Time : 04:24:24
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mfi_db.fees_tb' doesn't exist
+Raw SQL : SELECT SUM(amount_paid) as amtpaid FROM fees_tb WHERE deleted='0' AND YEAR(on_date)=''
+
+Time : 04:24:00
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'budgetid' in 'where clause'
+Raw SQL : SELECT * FROM budget WHERE budgetid='1'
+
+Time : 04:23:34
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'budgetid' in 'where clause'
+Raw SQL : SELECT * FROM budget WHERE budgetid='1'

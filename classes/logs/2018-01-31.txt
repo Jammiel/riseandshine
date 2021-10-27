@@ -1,0 +1,7 @@
+Time : 13:42:43
+SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+
+
+Time : 08:57:05
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'insertiondate' in 'where clause'
+Raw SQL : SELECT DISTINCT(clientid) FROM deposits WHERE YEAR(inserteddate)='2018'  AND MONTHNAME(insertiondate) = 'January'

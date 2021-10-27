@@ -1,0 +1,7 @@
+Time : 14:04:11
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mfi_db.loan_schedules' doesn't exist
+Raw SQL : SELECT * FROM loan_approvals p,loan_schedules s WHERE s.approveid=p.desc_id ORDER BY s.disbursed_date DESC
+
+Time : 07:43:22
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'photo' in 'field list'
+Raw SQL : UPDATE clients SET accountname = :accountname,accountno = :accountno,photo = :photo WHERE clientid= :clientid

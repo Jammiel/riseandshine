@@ -1,0 +1,35 @@
+Time : 13:48:31
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'PRIMARY'
+Raw SQL : INSERT INTO withdraws (clientid,amount,amount_inwords,user_handle,re_tag,balance,inserteddate,modifieddate,withdrawor) VALUES (:clientid,:amount,:amount_inwords,:user_handle,:re_tag,:balance,:inserteddate,:modifieddate,:withdrawor)
+
+Time : 13:48:22
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'PRIMARY'
+Raw SQL : INSERT INTO withdraws (clientid,amount,amount_inwords,user_handle,re_tag,balance,inserteddate,modifieddate,withdrawor) VALUES (:clientid,:amount,:amount_inwords,:user_handle,:re_tag,:balance,:inserteddate,:modifieddate,:withdrawor)
+
+Time : 12:52:44
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'PRIMARY'
+Raw SQL : INSERT INTO monthlycharges (clientid,dedmonth,amount,balance,mdate,mtime) VALUES (:clientid,:dedmonth,:amount,:balance,:mdate,:mtime)
+
+Time : 12:51:54
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'PRIMARY'
+Raw SQL : INSERT INTO post_chart (clientid,depositeditems,depositedamts,inserteddate,e_tag,userhandle,amount) VALUES (:clientid,:depositeditems,:depositedamts,:inserteddate,:e_tag,:userhandle,:amount)
+
+Time : 12:51:54
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'PRIMARY'
+Raw SQL : INSERT INTO monthlycharges (clientid,dedmonth,amount,balance,mdate,mtime) VALUES (:clientid,:dedmonth,:amount,:balance,:mdate,:mtime)
+
+Time : 12:51:40
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'PRIMARY'
+Raw SQL : INSERT INTO post_chart (clientid,depositeditems,depositedamts,inserteddate,e_tag,userhandle,amount) VALUES (:clientid,:depositeditems,:depositedamts,:inserteddate,:e_tag,:userhandle,:amount)
+
+Time : 12:50:38
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'PRIMARY'
+Raw SQL : INSERT INTO post_chart (clientid,depositeditems,depositedamts,inserteddate,e_tag,userhandle,amount) VALUES (:clientid,:depositeditems,:depositedamts,:inserteddate,:e_tag,:userhandle,:amount)
+
+Time : 11:54:32
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'PRIMARY'
+Raw SQL : INSERT INTO mergerwd (transactiontype,transactionid,insertiondate,clientid) VALUES (:transactiontype,:transactionid,:insertiondate,:clientid)
+
+Time : 13:47:19
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'PRIMARY'
+Raw SQL : INSERT INTO vault_tracs (transamount,operation,direction,vdate,vtime,balance) VALUES (:transamount,:operation,:direction,:vdate,:vtime,:balance)
