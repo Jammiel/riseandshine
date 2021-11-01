@@ -113,7 +113,7 @@ require_once '../system_controller.php';
 					if($data23){$clientdata->numberofshares = $data23/GENERAL_SETTINGS::$sharevalue;}
 					if($data25){$clientdata->loanaccount = $data25;}
 					if($data26){$clientdata->loan_fines = $data27;}
-					if($data27){$clientdata->lnint = $data27;}
+					if($data27){$clientdata->loan_interest = $data27;}
 					if($data28){$clientdata->commitment_saving = $data28;}
 					
 					// $clientdata->shareaccount_amount = $data23;
