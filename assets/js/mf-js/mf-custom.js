@@ -2,7 +2,7 @@
  * Created by jammieluvie on 12/20/16.
  */
 
-$(function () {
+ $(function () {
     $("#btnPrint").click(function () {
         var contents = $("#dvContents").html();
         var frame1 = $('<iframe />');
@@ -5500,11 +5500,13 @@ function awarddividends(){
 function checkfixeddeposit(ab){
 
 	if(document.getElementById('savetypeint'+ab).value == "5"){
-		document.getElementById('fixdepositspace'+ab).innerHTML = '' +
+		document.getElementById('fixdepositspace'+ab).innerHTML = '<div class="row"><div class="col-md-10">' +
 		'		<label class="labelcolor">Start Date</label> ' +
 		'		<input onclick="" id="datepicker3" type="text" class="form-control" placeholder="Enter Start Date"><br>' +
 		'		<label class="labelcolor">End Date</label>' +
-		'		<input onclick="" id="datepicker4" type="text" class="form-control" placeholder="Enter End Date"><br>';
+		'		<input onclick="" id="datepicker4" type="text" class="form-control" placeholder="Enter End Date"><br>'+
+		'		<label class="labelcolor">Amount To Fix</label>' +
+		'		<input onclick="" id="fixedamount" type="text" class="form-control" placeholder="Enter Amount" width="80"><br></div></div>';
 	}else{
 		document.getElementById('fixdepositspace'+ab).innerHTML = "";
 	}
@@ -5526,7 +5528,7 @@ function setsavingaccount(ab,vals){
 	if(document.getElementById('savetypeint'+ab).value == "5"){
 		data = 	document.getElementById('savetypeint'+ab).value+"?::?"+
 				vals+"?::?"+document.getElementById('datepicker3').value+"?::?"+
-				document.getElementById('datepicker4').value;
+				document.getElementById('datepicker4').value+"?::?"+document.getElementById('fixedamount').value;
 	}else{
 		data = document.getElementById('savetypeint'+ab).value+"?::?"+vals;
 	}
@@ -6522,4 +6524,81 @@ function GetStocks(res) {
     xmlhttp.open("GET", "classes/ajax_res.php?getstockid=" + res, true);
     xmlhttp.send();
 
+}
+
+function saveauditrecord(){
+    var data = document.getElementById('basic').value+"?::?"+document.getElementById('transferoptions').value+"?::?"+document.getElementById('amtrcvd').value
+    
+    if(document.getElementById('basic').value==""){
+        document.getElementById('savingbal').innerHTML = "0";
+    }else if(document.getElementById('transferoptions').value =="" || document.getElementById('amtrcvd').value ==""){
+        new PNotify({
+            title: 'MISSING INPUT!',
+            text: 'Enter and try again.',
+            type: 'warning',
+            icon: 'ti ti-close',
+            styling: 'fontawesome'
+        });
+    }else{
+        
+        if (window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+        } else {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                var responseArray = xmlhttp.responseText.split("|<><>|");
+                document.getElementById('noncashtransfertable').innerHTML = responseArray[0];
+                document.getElementById('noncashtransferdata').innerHTML = responseArray[1];
+                
+                $('#grn').DataTable({
+                        "bDestroy": true,
+                        "paging": true,
+                        "lengthChange": true,
+                        "searching": true,
+                        "ordering": true,
+                        "info": true,
+                        "autoWidth": true,
+                        "sDom": 'lfrtip'
+                });
+
+                $('.dataTables_filter input').attr('placeholder','Search...');
+                $('.panel-ctrls').append($('.dataTables_filter').addClass("pull-right")).find("label").addClass("panel-ctrls-center");
+                $('.panel-ctrls').append("<i class='separator'></i>");
+                $('.panel-ctrls').append($('.dataTables_length').addClass("pull-left")).find("label").addClass("panel-ctrls-center");
+                $('.panel-footer').append($(".dataTable+.row"));
+                $('.dataTables_paginate>ul.pagination').addClass("pull-right m-n");
+                $('#basic').selectpicker({
+                    "livesearch":true
+                });
+            }
+        };
+
+        xmlhttp.open("GET", "classes/ajax_res.php?saveaudit=" + data, true);
+        xmlhttp.send();
+        
+    }
+}
+
+function cancelauditrecord(){
+
+    var data = "1";
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            var responseArray = xmlhttp.responseText.split("|<><>|");
+            document.getElementById('noncashtransferdata').innerHTML = responseArray[0];
+
+			$('#basic').selectpicker({
+				"livesearch":true
+			});
+        }
+    };
+    xmlhttp.open("GET", "classes/ajax_res.php?cancelauditrecord=" + data, true);
+    xmlhttp.send();
 }
