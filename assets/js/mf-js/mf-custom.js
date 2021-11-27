@@ -2,7 +2,7 @@
  * Created by jammieluvie on 12/20/16.
  */
 
- $(function () {
+$(function () {
     $("#btnPrint").click(function () {
         var contents = $("#dvContents").html();
         var frame1 = $('<iframe />');

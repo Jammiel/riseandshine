@@ -17,6 +17,115 @@ require_once 'controller/utils.php';
  * @author jammieluvie
  **/
 
+class AUDIT extends database_crud{
+	protected $table = "audit_trial";
+    protected $pk = "id"; 
+    //SELECT `id`, `table_name`, `new_amt`, `old_amt`, `handled_by`, `added` FROM `audit_trial` WHERE 1
+    public static function addAudit($dataIn){
+    	$data = explode("?::?", $dataIn); 
+    	$db = new DB(); 
+    	session_start();  GENERAL_SETTINGS::GEN();
+    	$rs ="0";$da ="";
+
+    	foreach ($db->query("SELECT * FROM clients where clientid='".$data[0]."'") as $row) {
+    		if($data[1]=="1"){ 
+    			$rs = $row['savingaccount']; 
+    			$da ="Saving";
+    			$db->query("UPDATE clients SET savingaccount='".$data[2]."' WHERE clientid='".$data[0]."'");
+    		}
+    		if($data[1]=="2"){ 
+    			$rs = $row['shareaccount_amount']; 
+    			$da ="Share";
+    			$db->query("UPDATE clients SET shareaccount_amount='".$data[2]."' WHERE clientid='".$data[0]."'");
+    			$db->query("UPDATE clients SET numberofshares ='".($data[2]/GENERAL_SETTINGS::$sharevalue)."' WHERE clientid='".$data[0]."'");
+    		}
+    		if($data[1]=="3"){ 
+    			$rs = $row['loanaccount']; 
+    			$da ="Loan";
+    			$db->query("UPDATE clients SET loanaccount='".$data[2]."' WHERE clientid='".$data[0]."'");
+    		}
+    		if($data[1]=="4"){ 
+    			$rs = $row['loan_fines']; 
+    			$da ="Loan Fine";
+    			$db->query("UPDATE clients SET loan_fines='".$data[2]."' WHERE clientid='".$data[0]."'");
+    		}
+    		if($data[1]=="5"){ 
+    			$rs = $row['loan_interest']; 
+    			$da ="Loan Interest";
+    			$db->query("UPDATE clients SET loan_interest='".$data[2]."' WHERE clientid='".$data[0]."'");
+    		}
+    	}
+
+    	$dt = new AUDIT();
+    	$dt->table_name = "clients";
+    	$dt->clientID = $data[0];
+    	$dt->new_amt = $data[2];
+    	$dt->old_amt = $rs;
+    	$dt->coln = $da;
+    	$dt->handled_by = $_SESSION['user_id'];
+    	$dt->create();
+    	self::RECORDS();
+        echo '|<><>|';
+        self::CANCELRecord();
+    }
+
+    public static function CANCELRecord(){
+        echo '
+            <label class="labelcolor">Client Name</label>
+            <select onchange="" id="basic" class="selectpicker show-tick form-control" data-live-search="true">
+                <option value="">select member...</option>
+                ';CLIENT_DATA::CLIENT_OPTIONSEARCH();  echo'
+            </select><br>
+            <label class="labelcolor">Record Type</label>
+            <select onchange="" id="transferoptions" class="form-control">
+                <option value="">Select Record Type</option>
+                <option value="1">Saving</option>
+                <option value="2">Shares</option>
+                <option value="3">Loan Principal</option>
+                <option value="4">Loan Penalty</option>
+                <option value="5">Loan Interest</option>
+                
+            </select><br>
+            <label class="labelcolor">New Amount</label>
+            <input onclick="" id="amtrcvd" type="text" class="form-control" placeholder="Enter Amount Received"><br>
+            <center>
+                <button class="btn-primary btn" type="" onclick="saveauditrecord()" >Submit Record</button>
+                <button onclick="cancelauditrecord()" class="btn btn-default" >Cancel</button>
+            </center> <br><br>
+        ';
+    }
+
+    public static function RECORDS(){
+        $db = new DB();
+        echo '
+        <table id="grn" cellpadding="0" width = "100%" cellspacing="0" border="0" class="table table-bordered m-n">
+                <thead>
+                        <tr class="info">
+                                <th width="30%">Account Detail</th>
+                                <th width="25%">Record</th>
+                                <th width="30%">Amount</th>
+                                <th width="15%">Date</th>
+                        </tr>
+                </thead>
+                <tbody>
+                '; 
+                foreach($db->query("SELECT * FROM audit_trial ORDER BY id DESC") as $row){
+                        CLIENT_DATA::$clientid = $row['clientID'];
+                        CLIENT_DATA::CLIENTDATAMAIN();
+                        echo "<tr>";
+                        echo "<td data-order='1'><b style='color: #b9151b;'>".$accountcodename."</b><br><b>".CLIENT_DATA::$accountname." </b> <b class='pull-right'>(".CLIENT_DATA::$accountno.")</b></td>";
+                        echo "<td><b> ".$row['coln']."</b></td>";
+                        echo "<td>Old : <b>".number_format($row['old_amt'])."</b><br>New : <b>".number_format($row['new_amt'])."</b></td>";
+                        echo "<td>".$row['added']."</td>";
+                        echo "</tr>";
+                } 
+        echo'
+                </tbody>
+        </table>
+        ';
+    }
+}
+
 class MONTHLYCHARGE extends database_crud{
     protected $table = "monthlycharges";
     protected $pk = "mchargeid";
@@ -30,11 +139,13 @@ class MONTHLYCHARGE extends database_crud{
 
             }else{
                 if($row['savingaccount'] > GENERAL_SETTINGS::$monthlycharges){
-                    $db->query("UPDATE clients SET monthcharges='".NOW_DATETIME::$yearmonth."', savingaccount=savingaccount-'".GENERAL_SETTINGS::$monthlycharges."' WHERE clientid='".$row['clientid']."'");
+                    $charge = GENERAL_SETTINGS::$monthlycharges;
+                    if($row['accounttype']==="4"){$charge = "0";}
+                    $db->query("UPDATE clients SET monthcharges='".NOW_DATETIME::$yearmonth."', savingaccount=savingaccount-'".$charge."' WHERE clientid='".$row['clientid']."'");
                     $month->clientid = $row['clientid'];
                     $month->dedmonth = NOW_DATETIME::$yearmonth;
-                    $month->amount = GENERAL_SETTINGS::$monthlycharges;
-                    $month->balance = ($row['savingaccount'] - GENERAL_SETTINGS::$monthlycharges);
+                    $month->amount = $charge;
+                    $month->balance = ($row['savingaccount'] - $charge);
                     $month->mdate = NOW_DATETIME::$Date;
                     $month->mtime = NOW_DATETIME::$Time;
                     $month->create();

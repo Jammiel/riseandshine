@@ -36,6 +36,12 @@ if($_GET['payrecord']){
             </table>
         ';
 }
+if($_GET['saveaudit']){
+    AUDIT::addAudit($_GET['saveaudit']);
+}
+if($_GET['cancelauditrecord']){
+    AUDIT::CANCELRecord();
+}
 if($_GET['refreshledger']){
 	CLIENT_DATA::$clientid = $_GET['refreshledger'];
     CLIENT_DATA::RETURN_TRANSACTIONWD();
@@ -61,6 +67,9 @@ if($_GET['depositsupvalues']){
     DEPOSIT_CATEGORY::GET_VALUES();
 }
 if($_GET['saveindividualaccountdata']){
+    CLIENT_DATA::SAVE_INDIVIDUALDATA();
+}
+if($_GET['saveindividualaccountdata1']){
     CLIENT_DATA::SAVE_INDIVIDUALDATA();
 }
 if($_GET['savegroupaccountdata']){

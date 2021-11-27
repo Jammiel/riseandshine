@@ -515,7 +515,7 @@ class LOAN_PROCESSCLASS extends database_crud {
         $schedule->finestat       	=  $finestat;
         $schedule->loanbal      	=  $datasch[7];
         $schedule->type         	=  "1";
-     //        $schedule->monthlypay         	=  "...";
+//        $schedule->monthlypay         	=  "...";
         $schedule->totalprinc   	=  $datasch[1];
         $schedule->totalinterest        =  $datasch[9];
         

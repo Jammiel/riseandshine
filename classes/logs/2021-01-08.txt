@@ -1,0 +1,3 @@
+Time : 23:34:49
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'isingiro_sacco.audit_trial' doesn't exist
+Raw SQL : SELECT * FROM audit_trial ORDER BY id DESC

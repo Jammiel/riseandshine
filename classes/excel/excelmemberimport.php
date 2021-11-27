@@ -74,7 +74,6 @@ require_once '../system_controller.php';
 				$data25 = isset($Row[24]) ? $Row[24] : '';
 				$data26 = isset($Row[25]) ? $Row[25] : '';
 				$data27 = isset($Row[26]) ? $Row[26] : '';
-				$data28 = isset($Row[27]) ? $Row[27] : '';
 				if($data1=="FIRST NAME"){
 					
 				}else if($data1!="" || $data3!="" || $data4!=""){
@@ -104,7 +103,6 @@ require_once '../system_controller.php';
 					$individual->sshares = $data23;
 					$individual->sloans = $data25;
 					$individual->ssaving = $data24;
-					$individual->csaving = $data28;
 					
 					$clientdata->accounttype = "1";
 					$clientdata->regdate = NOW_DATETIME::$Date;
@@ -112,9 +110,8 @@ require_once '../system_controller.php';
 					if($data23){$clientdata->shareaccount_amount = $data23;}
 					if($data23){$clientdata->numberofshares = $data23/GENERAL_SETTINGS::$sharevalue;}
 					if($data25){$clientdata->loanaccount = $data25;}
-					if($data26){$clientdata->loan_fines = $data27;}
-					if($data27){$clientdata->loan_interest = $data27;}
-					if($data28){$clientdata->commitment_saving = $data28;}
+					if($data27){$clientdata->loan_fines = $data27;}
+					if($data28){$clientdata->lnint = $data27;}
 					
 					// $clientdata->shareaccount_amount = $data23;
 					// $clientdata->numberofshares = $data23/GENERAL_SETTINGS::$sharevalue;

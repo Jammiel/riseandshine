@@ -132,7 +132,75 @@ class PAGE {
           elseif($_GET['page']==55){self::generalsettings();}
           elseif($_GET['page']==56){self::Expenses();}
           elseif($_GET['page']==57){self::BankTransactions();}
+          elseif($_GET['page']==58){self::audit_Trial();}
           else{self::dashboard();}
+    }
+    static function audit_Trial(){
+        NOW_DATETIME::NOW();    $db = new DB();
+        echo '
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-midnightblue"  style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+                         <div class="panel-heading">
+                            <h2><i class="fa fa-bar-chart"></i>Audit Trial</h2>
+                            <h2 class="pull-right">Date: &nbsp;'.NOW_DATETIME::$Date.'</h2>
+                            <div class="options">
+                                <ul class="nav nav-tabs"><li class="dropdown pull-right tabdrop hide"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-angle-down"></i> </a><ul class="dropdown-menu"></ul></li>
+                                <li class="active"><a href="#tab-6-1" data-toggle="tab" aria-expanded="false">Record Non Cash Transaction</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                         <div class="panel-body">
+                            <div class="tab-content">
+                                 <div class="tab-pane  active" id="tab-6-1">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="panel panel-teal">
+                                            <center><h3><b>Audit</b></h3></center><br>
+                                            <div class="col-md-10 col-md-offset-1">
+                                                <div id="noncashtransferdata">
+                                                    <label class="labelcolor">Client Name</label>
+                                                    <select onchange="" id="basic" class="selectpicker show-tick form-control" data-live-search="true">
+                                                        <option value="">select member...</option>
+                                                        ';CLIENT_DATA::CLIENT_OPTIONSEARCH();  echo'
+                                                    </select><br>
+                                                    <label class="labelcolor">Record Type</label>
+                                                    <select onchange="" id="transferoptions" class="form-control">
+                                                        <option value="">Select Record Type</option>
+                                                        <option value="1">Saving</option>
+                                                        <option value="2">Shares</option>
+                                                        <option value="3">Loan Principal</option>
+                                                        <option value="4">Loan Penalty</option>
+                                                        <option value="5">Loan Interest</option>
+                                                        
+                                                    </select><br>
+                                                    <label class="labelcolor">New Amount</label>
+                                                    <input onclick="" id="amtrcvd" type="text" class="form-control" placeholder="Enter Amount Received"><br>
+                                                    <center>
+                                                        <button class="btn-primary btn" type="" onclick="saveauditrecord()" >Submit Record</button>
+                                                        <button onclick="cancelauditrecord()" class="btn btn-default" >Cancel</button>
+                                                    </center> <br><br>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7">
+                                        <div class="panel panel-teal">
+                                            <center><h2><b>Audit Records</b></h2></center></div>
+                                            <div id="noncashtransfertable">
+                                                '; AUDIT::RECORDS(); echo'
+                                            </div>
+                                        </div>
+                                    </div>
+                                 </div>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        ';
     }
     static function depositnwithdraw(){
           NOW_DATETIME::NOW();
@@ -342,6 +410,7 @@ class PAGE {
                                             <option>Individual Category</option>
                                             <option>Joint Category</option>
                                             <option>Business Category</option>
+                                            <option>Junior Category</option>
                                         </select><br><br>
                                     </div>
                                     <div class="col-md-6">

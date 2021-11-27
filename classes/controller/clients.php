@@ -156,21 +156,22 @@ class CLIENT_DATA extends database_crud {
 			}
 			echo'  
 			  </div>
-              <div class="col-md-4">
-                 <b>Savings Account</b><br><br>
-                 <p>Acc Balance: <b>' .number_format($row['savingaccount']).'</b></p>
-              </div>
-              <div class="col-md-3">
-                 <b>Share Capital</b><br><br>
-                 <p style="font-size: 12px">Share Amount: <b>'.number_format($row['shareaccount_amount']).'</b></p>
-                 <p style="font-size: 12px">No. of Shares: <b>'.$row['numberofshares'].'</b></p>
-              </div>
-              <div class="col-md-3">
-                 <b>Loan Information</b><br><br>
-                 <p style="font-size: 12px">Loan Balance: <b>'.number_format($row['loanaccount']).'</b></p>
-                 <p style="font-size: 12px">Loan Interest: <b>'.number_format($row['loan_interest']).'</b></p>
-                 <p style="font-size: 12px">Loan Penalty: <b>'.number_format($row['loan_fines']).'</b></p>
-              </div>
+                <div class="col-md-4">
+                  <b>Savings Account</b><br><br>
+                  <p>Acc Balance: <b>' .number_format($row['savingaccount']).'</b></p>
+                  <p>Fixed Balance: <b>' .number_format($row['fixedamount']).'</b></p>
+                </div>
+                <div class="col-md-3">
+                   <b>Share Capital</b><br><br>
+                   <p style="font-size: 12px">Share Amount: <b>'.number_format($row['shareaccount_amount']).'</b></p>
+                   <p style="font-size: 12px">No. of Shares: <b>'.$row['numberofshares'].'</b></p>
+                </div>
+                <div class="col-md-3">
+                   <b>Loan Information</b><br><br>
+                   <p style="font-size: 12px">Loan Balance: <b>'.number_format($row['loanaccount']).'</b></p>
+                   <p style="font-size: 12px">Loan Interest: <b>'.number_format($row['loan_interest']).'</b></p>
+                   <p style="font-size: 12px">Loan Penalty: <b>'.number_format($row['loan_fines']).'</b></p>
+                </div>
             </div><hr>
             <button onclick="refreshledger()" class="w3-btn-block w3-dark-grey" style="border-bottom-right-radius: 10px;border-bottom-left-radius: 10px"><i class="fa fa-refresh"></i> &nbsp;&nbsp;Refresh Info</button>
           </div>
@@ -300,16 +301,16 @@ class CLIENT_DATA extends database_crud {
                     }
                 }
                 if($rowt['transactiontype']=="8"){
-            foreach ($db->query("SELECT * FROM divideneds WHERE divid='".$rowt['transactionid']."'") as $row2){
-            echo '<tr>';
-            echo '<td data-order="2014-00-00:00:00:00">'.$rowt['insertiondate'].'</td>';
-            echo '<td><b style="color: #03a9f4;">Dividend Deposit<span class="badge badge-info pull-right">non cash transaction</span></td>';
-            echo '<td></td>';
-            echo '<td>'.number_format($row2['divamt']).'</td>';
-            echo '<td>'.number_format($row2['savbal']).'</td>';
-            echo '<td></td>';
-            echo '</tr>';
-        }
+    foreach ($db->query("SELECT * FROM divideneds WHERE divid='".$rowt['transactionid']."'") as $row2){
+        echo '<tr>';
+        echo '<td data-order="2014-00-00:00:00:00">'.$rowt['insertiondate'].'</td>';
+        echo '<td><b style="color: #03a9f4;">Dividend Deposit<span class="badge badge-info pull-right">non cash transaction</span></td>';
+        echo '<td></td>';
+        echo '<td>'.number_format($row2['divamt']).'</td>';
+        echo '<td>'.number_format($row2['savbal']).'</td>';
+        echo '<td></td>';
+        echo '</tr>';
+    }
 }
                 if($rowt['transactiontype']=="9"){
     foreach ($db->query("SELECT * FROM monthlycharges WHERE mchargeid='".$rowt['transactionid']."'") as $rowm){
@@ -461,7 +462,12 @@ class CLIENT_DATA extends database_crud {
     public static function SAVE_INDIVIDUALDATA(){
         $clientdata = new CLIENT_DATA();    NOW_DATETIME::NOW(); $db = new DB();
         $individual = new INDIVIDUAL_ACCOUNTDATA();
-        $data = explode("?::?",$_GET['saveindividualaccountdata']);
+        if($_GET['saveindividualaccountdata']){
+            $data = explode("?::?",$_GET['saveindividualaccountdata']);
+        }else{
+            $data = explode("?::?",$_GET['saveindividualaccountdata1']);
+        }
+        
 
 
 
@@ -489,13 +495,19 @@ class CLIENT_DATA extends database_crud {
         $individual->address = $data[15];
         $individual->securityqtn = $data[16];
         $individual->answer = $data[19];
+        if($_GET['saveindividualaccountdata']){
+            $clientdata->accounttype = "1";
+        }else{
+            $clientdata->accounttype = "4";
+        }
         if($data[23]){
             foreach ($db->query("SELECT * FROM individualaccount WHERE indid='".$data[23]."'") as $row){
                 $clientdata->clientid = $row['acc_no'];  $clientdata->save();
             }
             $individual->indid = $data[23]; $individual->save();
         }else{
-            $clientdata->accounttype = "1";
+            
+            
             $clientdata->regdate = NOW_DATETIME::$Date;
             $clientdata->savingaccount = "0";
             $clientdata->shareaccount_amount = "0";
@@ -706,7 +718,7 @@ class CLIENT_DATA extends database_crud {
             }
             
         }
-		if($row['accounttype'] == "3"){
+			if($row['accounttype'] == "3"){
 			foreach ($db->query(static::$sql3." WHERE acc_no='".static::$clientid."'") as $row1){
 				static::$accountname = $row['accountname'];     	static::$accountno = $row['accountno'];             	static::$firstname = $row1['firstname'];
 				static::$secondname = $row1['secondname'];       	static::$lastname = $row1['lastname'];               	static::$gender = $row1['gender'];
@@ -783,19 +795,19 @@ class CLIENT_DATA extends database_crud {
                     </thead>
                     <tbody>';
         foreach ($db->query(static::$sql. " ORDER BY clientid ASC") as $row){
-            if($row['accounttype'] == "1"){
+            if($row['accounttype'] == "1" || $row['accounttype'] == "4"){
                 foreach ($db->query(static::$sql1." WHERE acc_no='".$row["clientid"]."'") as $row1){
                     echo '<tr>';
                     echo '<td data-order="1"><b style="color: #3C8DBC">'.$row['accountname'].'</b><br><b>'.$row['accountno'].'</b></td>';
                     echo '<td>'.$row['regdate'].'</td>';
-                    echo '<td>'.(($row['accounttype']=="1")?"<b>Individual Account</b>":(($row['accounttype']=="2")?"<b style='color: #27a7b4'>Group Account</b>":(($row['accounttype']=="3")?"<b style='color: #af1100'>Business Account</b>":""))).'</td>';
+                    echo '<td>'.(($row['accounttype']=="1")?"<b>Individual Account</b>":(($row['accounttype']=="2")?"<b style='color: #27a7b4'>Group Account</b>":(($row['accounttype']=="3")?"<b style='color: #af1100'>Business Account</b>":(($row['accounttype'] == "4")?"Junior Account":"")))).'</td>';
                     echo '
-						<td>
-							<center>
-								<i style="color: #2053ac" onclick="'.(($row['accounttype']=="1")?'individualdetail('.$row1['indid'].')':"").'" '.(($row['accounttype']=="1")?"data-target='#transactionsmodal'":(($row['accounttype']=="2")?:(($row['accounttype']=="3")?:""))).' data-toggle="modal" class="fa fa-eye fa-2x"></i>
-								<i onclick="'.(($row['accounttype']=="1")?'editindividualdetail('.$row1['indid'].')':"").'" class="fa fa-pencil fa-2x""></i>
-							</center>
-						</td>';
+                            <td>
+                                <center>
+                                    <i style="color: #2053ac" onclick="'.(($row['accounttype']=="1" || $row['accounttype'] == "4")?'individualdetail('.$row1['indid'].')':"").'" '.(($row['accounttype']=="1" || $row['accounttype'] == "4")?"data-target='#transactionsmodal'":(($row['accounttype']=="2")?:(($row['accounttype']=="3")?:""))).' data-toggle="modal" class="fa fa-eye fa-2x"></i>
+                                    <i onclick="'.(($row['accounttype']=="1" || $row['accounttype'] == "4")?'editindividualdetail('.$row1['indid'].')':"").'" class="fa fa-pencil fa-2x""></i>
+                                </center>
+                            </td>';
                     echo '</tr>';
                 }
             }
@@ -806,10 +818,10 @@ class CLIENT_DATA extends database_crud {
                 echo '<td>'.(($row['accounttype']=="1")?"<b>Group Account</b>":(($row['accounttype']=="2")?"<b style='color: #27a7b4'>Group Account</b>":(($row['accounttype']=="3")?"<b style='color: #af1100'>Business Account</b>":""))).'</td>';
                 echo '
                     <td>
-						<center>
-							<i style="color: #2053ac" onclick="'.(($row['accounttype']=="2")?'groupdetail('.$row['clientid'].')':"").'" data-target="#groupmodal" data-toggle="modal" class="fa fa-eye fa-2x"></i>
-							<i onclick="'.(($row['accounttype']=="2")?'editgroupdetail('.$row['clientid'].')':"").'"  class="fa fa-pencil fa-2x""></i>
-						</center>
+                        <center>
+                                <i style="color: #2053ac" onclick="'.(($row['accounttype']=="2")?'groupdetail('.$row['clientid'].')':"").'" data-target="#groupmodal" data-toggle="modal" class="fa fa-eye fa-2x"></i>
+                                <i onclick="'.(($row['accounttype']=="2")?'editgroupdetail('.$row['clientid'].')':"").'"  class="fa fa-pencil fa-2x""></i>
+                        </center>
                     </td>';
                 echo '</tr>';
             }
@@ -1839,9 +1851,9 @@ class CLIENT_DATA extends database_crud {
         $client ="";
         echo '<div class="row">';
         foreach ($db->query(static::$sql2." WHERE acc_no='".$_GET['groupeditdata']."'") as $row){
-        //            SELECT `groupid`, `acc_no`, `firstname`, `middlename`, `lastname`, `passportno`, `dateofbirth`,
-        //            `gender`, `nationality`, `mobilenumber`, `maritalstatus`, `occupation`, `employer`, `physicaladdress`, `subcounty`,
-        //             `district`, `address`, `nextofkin`, `relationship`, `contactdetail`, `photofile` FROM `groupaccount` WHERE 1
+//            SELECT `groupid`, `acc_no`, `firstname`, `middlename`, `lastname`, `passportno`, `dateofbirth`,
+//            `gender`, `nationality`, `mobilenumber`, `maritalstatus`, `occupation`, `employer`, `physicaladdress`, `subcounty`,
+//             `district`, `address`, `nextofkin`, `relationship`, `contactdetail`, `photofile` FROM `groupaccount` WHERE 1
             $firstname .= "?::?".$row['firstname'];
             $middlename .= "?::?".$row['middlename'];
             $lastname .= "?::?".$row['lastname'];
