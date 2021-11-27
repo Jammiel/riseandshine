@@ -1,6 +1,0 @@
-Time : 18:18:57
-SQLSTATE[HY000]: General error: 1364 Field 'ctracsid' doesn't have a default value
-Raw SQL : INSERT INTO cashiertracs (camount,cashier,ctype,ctime,cdate) VALUES (:camount,:cashier,:ctype,:ctime,:cdate)
-
-Time : 18:12:43
-SQLSTATE[HY000] [1049] Unknown database 'mfi_is'

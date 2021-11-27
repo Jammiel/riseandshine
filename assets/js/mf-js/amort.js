@@ -20,7 +20,7 @@ function getValues(){
     var terms = parseInt(document.getElementById("terms").value);
     var lntype = document.getElementById("loantype").value;
     var dates = document.getElementById("mydates").value;
-alert("hejkjljkjkljgsfkg");
+
     //set the div string
     var div = document.getElementById("Result");
 

@@ -1,0 +1,3 @@
+userpass = qnw=-6A]Cw7,
+usernaem =  isingiro_sacco_user 
+dbname = isingiro_sacco

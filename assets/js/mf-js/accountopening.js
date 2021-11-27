@@ -3,12 +3,43 @@
  */
 
 $(document).ready(function (e) {
-	$("#uploadimage").on('submit',(function(e) {
-		e.preventDefault();
-		$("#message").empty();
-		$('#loading').show();
-		$.ajax({
-                    url: "classes/ajax_php_file.php", // Url to which the request is send
+    $("#uploadimage").on('submit',(function(e) {
+            e.preventDefault();
+            $("#message").empty();
+            $('#loading').show();
+            $.ajax({
+                url: "classes/ajax_php_file.php", // Url to which the request is send
+                type: "POST",             // Type of request to be send, called as method
+                data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+                contentType: false,       // The content type used when sending data to the server.
+                cache: false,             // To unable request pages to be cached
+                processData:false,        // To send DOMDocument or non processed data file it is set to false
+                success: function(data) {  // A function to be called if request succeeds
+                
+                    // new PNotify({
+                            // title: 'MISSING INPUT!',
+                            // text: 'Enter and try again.'+data,
+                            // type: 'warning',
+                            // icon: 'ti ti-close',
+                            // styling: 'fontawesome'
+                    // });
+                    saveaccount(data);
+                    $('#loading').hide();
+                    $("#message").html(data);
+                }
+            });
+    }));
+    $("#uploadexcelform").on('submit',(function(e) {
+            document.getElementById("exceldataarea1").innerHTML = '<br>'+
+                '<div class="row" style="margin-bottom: 80px">'+
+                        '<span style="font-size:80px;"><i style="left:1em;top:1em" class="fa-li fa fa-spinner fa-spin"></i></span>'+
+                        ''+
+                '</div><br>uploading process please wait...';
+            e.preventDefault();
+            $("#message").empty();
+            $('#loading').show();
+            $.ajax({
+                    url: "classes/excel/excelssl.php", // Url to which the request is send
                     type: "POST",             // Type of request to be send, called as method
                     data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
                     contentType: false,       // The content type used when sending data to the server.
@@ -16,54 +47,23 @@ $(document).ready(function (e) {
                     processData:false,        // To send DOMDocument or non processed data file it is set to false
                     success: function(data)   // A function to be called if request succeeds
                     {
-				// new PNotify({
-					// title: 'MISSING INPUT!',
-					// text: 'Enter and try again.'+data,
-					// type: 'warning',
-					// icon: 'ti ti-close',
-					// styling: 'fontawesome'
-				// });
-				saveaccount(data);
-				$('#loading').hide();
-				$("#message").html(data);
-			}
-		});
-	}));
-	$("#uploadexcelform").on('submit',(function(e) {
-		document.getElementById("exceldataarea1").innerHTML = '<br>'+
-                    '<div class="row" style="margin-bottom: 80px">'+
-                            '<span style="font-size:80px;"><i style="left:1em;top:1em" class="fa-li fa fa-spinner fa-spin"></i></span>'+
-                            ''+
-                    '</div><br>uploading process please wait...';
-		e.preventDefault();
-		$("#message").empty();
-		$('#loading').show();
-		$.ajax({
-			url: "classes/excel/excelssl.php", // Url to which the request is send
-			type: "POST",             // Type of request to be send, called as method
-			data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
-			contentType: false,       // The content type used when sending data to the server.
-			cache: false,             // To unable request pages to be cached
-			processData:false,        // To send DOMDocument or non processed data file it is set to false
-			success: function(data)   // A function to be called if request succeeds
-			{
-				var responseArray = data.split("|<><>|");
-				new PNotify({
-					title: 'IMPORTATION FEEDBACK',
-					text: responseArray[0],
-					type: 'success',
-					icon: 'ti ti-close',
-					styling: 'fontawesome'
-				});
-				document.getElementById('exceldataarea').innerHTML = responseArray[1];
-				document.getElementById("exceldataarea1").innerHTML = '';
-				// $("#excelsheetupload").modal("hide"); 
-				$('#loading').hide();
-				$("#message").html(data);
-			}
-		});
-	}));
-	$("#uploadmemberexcel").on('submit',(function(e) {
+                            var responseArray = data.split("|<><>|");
+                            new PNotify({
+                                    title: 'IMPORTATION FEEDBACK',
+                                    text: responseArray[0],
+                                    type: 'success',
+                                    icon: 'ti ti-close',
+                                    styling: 'fontawesome'
+                            });
+                            document.getElementById('exceldataarea').innerHTML = responseArray[1];
+                            document.getElementById("exceldataarea1").innerHTML = '';
+                            // $("#excelsheetupload").modal("hide"); 
+                            $('#loading').hide();
+                            $("#message").html(data);
+                    }
+            });
+    }));
+    $("#uploadmemberexcel").on('submit',(function(e) {
 		document.getElementById("uploadexcelclient").disabled = true;
 		document.getElementById("exceldataarea1").innerHTML = '<br>'+
                     '<div class="row" style="margin-bottom: 80px">'+
@@ -103,7 +103,7 @@ $(document).ready(function (e) {
 });
  
 function applicattype() {
-    if(document.getElementById("getacctype").selectedIndex == 1 || document.getElementById("getacctype").selectedIndex == 0){
+    if(document.getElementById("getacctype").selectedIndex == 1 || document.getElementById("getacctype").selectedIndex == 0 || document.getElementById("getacctype").selectedIndex == 4){
         document.getElementById("applicantdata").innerHTML = '' +
             '<div id="applicantdata"><div hidden id="editindacc"></div>' +
             '<div class="col-md-12"><center><b style="color: #3C8DBC">Applicant Details</b><br><br></center></div>' +
@@ -568,7 +568,7 @@ function saveaccount(photo) {
             }
             xmlhttp.open("GET","classes/ajax_res.php?saveindividualaccountdata="+data,true);
             xmlhttp.send();
-        }
+    }
     if(document.getElementById("getacctype").selectedIndex == 2){
         var data =  document.getElementById("fname").value +"?::?"+
                     document.getElementById("lname").value +"?::?"+
@@ -729,7 +729,68 @@ function saveaccount(photo) {
         xmlhttp.open("GET","classes/ajax_res.php?savebusinessaccount="+data,true);
         xmlhttp.send();
     }
-	document.getElementById("saveacc").disabled = false;
+    if(document.getElementById("getacctype").selectedIndex == 4){
+
+        var data = document.getElementById("fname").value +"?::?"+
+                   document.getElementById("lname").value+"?::?"+
+                   document.getElementById("idnum").value+"?::?"+
+                   document.getElementById("nationality").value+"?::?"+
+                   document.getElementById("occupation").value+"?::?"+
+                   document.getElementById("mobilenumber").value+"?::?"+
+                   document.getElementById("subcounty").value+"?::?"+
+                   document.getElementById("mname").value+"?::?"+
+                   document.getElementById("gender").value+"?::?"+
+                   document.getElementById("dateofbirth").value+"?::?"+
+                   document.getElementById("maritalstatus").value+"?::?"+
+                   document.getElementById("employer").value+"?::?"+
+                   document.getElementById("physicaladdress").value+"?::?"+
+                   document.getElementById("district").value+"?::?"+
+                   document.getElementById("kname").value+"?::?"+
+                   document.getElementById("kaddress").value+"?::?"+
+                   document.getElementById("security").value+"?::?"+
+                   document.getElementById("krelationship").value+"?::?"+
+                   document.getElementById("contactdetail").value+"?::?"+
+                   document.getElementById("sanswer").value+"?::?"+
+                   document.getElementById("accountname").value+"?::?"+
+                   document.getElementById("accountnumber").value+"?::?"+photo;
+				 
+        if(document.getElementById("editindacc").innerHTML !=""){data +="?::?"+ document.getElementById("editindacc").innerHTML;}else{}
+  
+        if (window.XMLHttpRequest) {xmlhttp = new XMLHttpRequest();} else {xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");}
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+					var responseArray = xmlhttp.responseText.split("|<><>|");
+                    document.getElementById("applicantdata").innerHTML = responseArray[0];
+                    document.getElementById("accountdatarecords").innerHTML = responseArray[1] ;
+                    $('#grn').DataTable({
+                        "bDestroy": true,
+                        "paging": true,
+                        "lengthChange": true,
+                        "searching": true,
+                        "ordering": true,
+                        "info": true,
+                        "autoWidth": true,
+                        "sDom": 'lfrtip',
+                        "dom": 'Bfrtip',
+                        "buttons": [
+                            'excelHtml5', 'csv','pdf'
+                        ]
+                    });
+
+                    $('.dataTables_filter input').attr('placeholder','Search...');
+                    $('.panel-ctrls').append($('.dataTables_filter').addClass("pull-right")).find("label").addClass("panel-ctrls-center");
+                    $('.panel-ctrls').append("<i class='separator'></i>");
+                    $('.panel-ctrls').append($('.dataTables_length').addClass("pull-left")).find("label").addClass("panel-ctrls-center");
+                    $('.panel-footer').append($(".dataTable+.row"));
+                    $('.dataTables_paginate>ul.pagination').addClass("pull-right m-n");
+
+                    				
+                }
+            }
+            xmlhttp.open("GET","classes/ajax_res.php?saveindividualaccountdata1="+data,true);
+            xmlhttp.send();
+    }
+    document.getElementById("saveacc").disabled = false;
 }
 
 function individualdetail(e) {
@@ -772,7 +833,6 @@ function businessdetail(e) {
 }
 
 function editindividualdetail(e) {
-
     if (window.XMLHttpRequest) {xmlhttp = new XMLHttpRequest();} else {xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");}
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
