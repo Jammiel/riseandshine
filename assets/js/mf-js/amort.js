@@ -20,7 +20,7 @@ function getValues(){
     var terms = parseInt(document.getElementById("terms").value);
     var lntype = document.getElementById("loantype").value;
     var dates = document.getElementById("mydates").value;
-alert("hejkjljkjkljgsfkg");
+alert(terms."----".lntype);
     //set the div string
     var div = document.getElementById("Result");
 
@@ -34,11 +34,11 @@ alert("hejkjljkjkljgsfkg");
     if (balVal && intrVal){
         //Returns div string if inputs are valid
         if(lntype ==="0"){
-            div.innerHTML += amortSimple(balance, interestRate, terms, dates);
+//            div.innerHTML += amortSimple(balance, interestRate, terms, dates);
         }else if(lntype ==="1"){
-            div.innerHTML += amortReducing(balance, interestRate, terms, dates);
+  //          div.innerHTML += amortReducing(balance, interestRate, terms, dates);
         }else{
-            div.innerHTML += amortCompound(balance, interestRate, terms, dates);
+    //        div.innerHTML += amortCompound(balance, interestRate, terms, dates);
         }
         
     }else{
