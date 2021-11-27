@@ -1,0 +1,7 @@
+Time : 14:20:18
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'csaving' in 'field list'
+Raw SQL : INSERT INTO individualaccount (firstname,lastname,secondname,gender,nationalidno,nationality,dateofbirth,maritalstatus,occupation,employer,mobilenumber,physicaladress,subcounty,district,kinname,relationship,contactdetails,address,securityqtn,answer,sshares,sloans,ssaving,csaving,acc_no,photo) VALUES (:firstname,:lastname,:secondname,:gender,:nationalidno,:nationality,:dateofbirth,:maritalstatus,:occupation,:employer,:mobilenumber,:physicaladress,:subcounty,:district,:kinname,:relationship,:contactdetails,:address,:securityqtn,:answer,:sshares,:sloans,:ssaving,:csaving,:acc_no,:photo)
+
+Time : 14:14:58
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'lnint' in 'field list'
+Raw SQL : INSERT INTO clients (accountname,accountno,accounttype,regdate,savingaccount,shareaccount_amount,numberofshares,loanaccount,loan_fines,lnint,commitment_saving,clientdataid) VALUES (:accountname,:accountno,:accounttype,:regdate,:savingaccount,:shareaccount_amount,:numberofshares,:loanaccount,:loan_fines,:lnint,:commitment_saving,:clientdataid)
