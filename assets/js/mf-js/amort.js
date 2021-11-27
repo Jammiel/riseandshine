@@ -21,10 +21,10 @@ function getValues(){
     var lntype = document.getElementById("loantype").value;
     var dates = document.getElementById("mydates").value;
 
-    alert(terms+"----"+lntype);
+    
     //set the div string
     var div = document.getElementById("Result");
-
+    alert(balance+"----"+interestRate+"-------"+terms+"--------"+dates);
     //in case of a re-calc, clear out the div!
     div.innerHTML = "";
 
