@@ -21,7 +21,7 @@ function getValues(){
     var lntype = document.getElementById("loantype").value;
     var dates = document.getElementById("mydates").value;
 
-alert(terms."----".lntype);
+    alert(terms+"----"+lntype);
     //set the div string
     var div = document.getElementById("Result");
 
@@ -29,23 +29,23 @@ alert(terms."----".lntype);
     div.innerHTML = "";
 
     //validate inputs - display error if invalid, otherwise, display table
-    var balVal = validateInputs(balance);
-    var intrVal = validateInputs(interestRate);
+    // var balVal = validateInputs(balance);
+    // var intrVal = validateInputs(interestRate);
 
-    if (balVal && intrVal){
-        //Returns div string if inputs are valid
-        if(lntype ==="0"){
-//            div.innerHTML += amortSimple(balance, interestRate, terms, dates);
-        }else if(lntype ==="1"){
-  //          div.innerHTML += amortReducing(balance, interestRate, terms, dates);
-        }else{
+    // if (balVal && intrVal){
+    //     //Returns div string if inputs are valid
+    //     if(lntype ==="0"){
+    //        div.innerHTML += amortSimple(balance, interestRate, terms, dates);
+    //     }else if(lntype ==="1"){
+    //        div.innerHTML += amortReducing(balance, interestRate, terms, dates);
+    //     }else{
     //        div.innerHTML += amortCompound(balance, interestRate, terms, dates);
-        }
+    //     }
         
-    }else{
-        //returns error if inputs are invalid
-        div.innerHTML += "Please Check your inputs and retry - invalid values.";
-    }
+    // }else{
+    //     //returns error if inputs are invalid
+    //     div.innerHTML += "Please Check your inputs and retry - invalid values.";
+    // }
 }
 
 /**
