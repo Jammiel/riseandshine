@@ -50,11 +50,11 @@ class DB { # @object, The PDO object
      */
     private function Connect()
     {
-        $dsn = 'mysql:dbname=isingiro_sacco;host=localhost';
+        $dsn = 'mysql:dbname=ucatchapps_riseandshine;host=localhost';
        
         try {
             # Read settings from INI file, set UTF8
-             $this->pdo = new PDO($dsn,'isingiro_sacco_user', 'qnw=-6A]Cw7,', array(
+             $this->pdo = new PDO($dsn,'root', 'ucatch@2019', array(
                 PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
             ));
 
