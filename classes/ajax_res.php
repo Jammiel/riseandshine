@@ -10,7 +10,7 @@ require_once 'system_controller.php';
  */
 error_reporting(0);
 AUTH_PAGE::LOGIN_CHECK();
-TIMELYTRACKER::tracker();
+//TIMELYTRACKER::tracker();
 //if($_GET['datatest']){
 //    TIMELYTRACKER::autopayloan();
 //}
